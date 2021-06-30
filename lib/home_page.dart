@@ -14,16 +14,16 @@ class HomePage extends StatefulWidget {
         title: Text("NOTES"),
         centerTitle: true,
       ),
-      body: Column(
+      body: SingleChildScrollView(child: Column(
         children: [
           for (var i = 0; i < count; i++)
-          Card(
-            child: ListTile(
-              title: Text("Minha primeira nota"),
+            Card(
+              child: ListTile(
+                title: Text("Minha primeira nota"),
+              ),
             ),
-          ),
         ],
-      ),
+      ),),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
