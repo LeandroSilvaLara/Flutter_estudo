@@ -1,9 +1,19 @@
 
 import 'package:flutter/material.dart';
 
-class CreateNotePage extends StatelessWidget {
+class CreateNotePage extends StatefulWidget {
+  @override
+  _CreateNotePageState createState() => _CreateNotePageState();
+}
+
+class _CreateNotePageState extends State<CreateNotePage>{
+  var description = "";
+
   @override
   Widget build(BuildContext context) {
+    if (ModalRoute.of(context)!.settings.arguments !=null) {
+      description = ModalRoute.of(context)!.settings.arguments as String;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Note"),
@@ -20,10 +30,21 @@ class CreateNotePage extends StatelessWidget {
             children: [
               TextField(
                 maxLines: null,
+                onChanged: (value) {
+                  description = value;
+                  setState(() {
+
+                  });
+                },
           ),
-          ElevatedButton(onPressed: () {}, child: Text("Salvar") )
-        ],
-        ),
+          if (description.isNotEmpty)
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, description);
+                },
+                 child: Text("Salvar") )
+            ],
+          ),
       ));
   }
 }

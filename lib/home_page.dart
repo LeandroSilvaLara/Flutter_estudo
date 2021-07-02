@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/create_note_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,17 +23,21 @@ class HomePage extends StatefulWidget {
             Card(
               child: ListTile(
                 title: Text(notes[i]),
+                onTap: (){
+                  Navigator.pushNamed(context, "/create-note", arguments: notes[i]);
+                },
               ),
             ),
         ],
       ),),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          notes.add("Item ${ notes.length}");
-          setState(() {
-
-          });
+        onPressed: () async {
+           var desciption = await Navigator.pushNamed(context, "/create-note");
+          if (desciption != null) {
+          notes.add(desciption as String);
+          setState(() {} );
+          }
         },
       ),
     );
