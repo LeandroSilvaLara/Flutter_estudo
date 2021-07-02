@@ -24,9 +24,16 @@ class HomePage extends StatefulWidget {
               child: ListTile(
                 title: Text(notes[i]),
                 onTap: () async{
-                  var desciption = await Navigator.pushNamed(context, "/create-note", arguments: notes[i]);
-                  if (desciption != null) {
-                    notes[i] = desciption as String;
+                  var response = await Navigator.pushNamed(context,
+                      "/create-note",
+                      arguments: notes[i]);
+                  if (response != null) {
+                    var description = response as String;
+                    if (response.isEmpty) {
+                      notes.remove(i);
+                    }else {
+                      notes[i] = description;
+                    }
                     setState(() {} );
                   }
                 },
