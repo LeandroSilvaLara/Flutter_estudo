@@ -13,10 +13,17 @@ class CreateNotePage extends StatelessWidget {
         ),
         ],
       ),
-      body: TextField(
-        maxLines: 10,
-        decoration: InputDecoration(border: InputBorder.none),
-      ),
-    );
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextField(
+                maxLines: null,
+          ),
+          ElevatedButton(onPressed: () {}, child: Text("Salvar") )
+        ],
+        ),
+      ));
   }
 }
