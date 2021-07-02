@@ -23,8 +23,12 @@ class HomePage extends StatefulWidget {
             Card(
               child: ListTile(
                 title: Text(notes[i]),
-                onTap: (){
-                  Navigator.pushNamed(context, "/create-note", arguments: notes[i]);
+                onTap: () async{
+                  var desciption = await Navigator.pushNamed(context, "/create-note", arguments: notes[i]);
+                  if (desciption != null) {
+                    notes[i] = desciption as String;
+                    setState(() {} );
+                  }
                 },
               ),
             ),
